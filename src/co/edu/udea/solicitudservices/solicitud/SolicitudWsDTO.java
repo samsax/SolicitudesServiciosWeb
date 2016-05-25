@@ -1,4 +1,4 @@
-package co.edu.udea.solicitudservices.solicitudes;
+package co.edu.udea.solicitudservices.solicitud;
 
 import java.util.Date;
 
@@ -7,6 +7,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import co.edu.udea.ingweb.solicitud.dto.Cliente;
 import co.edu.udea.ingweb.solicitud.dto.Empleado;
 
+/**
+ * @author Samuel Arenas	- samuelsaxofon@gmail.com
+ * @author Camila Gómez		- camigomez35@gmail.com
+ * @author Santiago Romero	- bonampa312@gmail.com
+ * 
+ * Clase usada como objeto de abstracción de la entidad Solicitud del proyecto Spring
+ */
 @XmlRootElement
 public class SolicitudWsDTO {
 
@@ -19,6 +26,7 @@ public class SolicitudWsDTO {
 	Date fechaRespuesta;
 	Cliente cliente;
 	Empleado empleado;
+	
 	public int getIdcodigo() {
 		return idcodigo;
 	}
