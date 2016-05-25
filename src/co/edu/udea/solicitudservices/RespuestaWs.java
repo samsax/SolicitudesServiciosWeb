@@ -1,4 +1,4 @@
-package co.edu.udea.solicitudservices.respuesta;
+package co.edu.udea.solicitudservices;
 
 
 
@@ -20,6 +20,7 @@ import co.edu.udea.ingweb.solicitud.servicios.RespuestaService;
 import co.edu.udea.ingweb.util.exception.IWDaoException;
 import co.edu.udea.ingweb.util.exception.IWServiceException;
 import co.edu.udea.ingweb.util.exception.MyException;
+import co.edu.udea.solicitudservices.respuesta.RespuestaWsDTO;
 
 /**
  * @author Samuel Arenas	- samuelsaxofon@gmail.com
@@ -29,7 +30,7 @@ import co.edu.udea.ingweb.util.exception.MyException;
  * Lógica del negocio usada en la entidad Respuesta del proyecto Spring
  */
 @Component
-@Path("Respuesta")
+@Path("respuesta")
 public class RespuestaWs {
 	@Autowired
 	RespuestaService respuestaService;

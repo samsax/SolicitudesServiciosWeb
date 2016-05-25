@@ -1,4 +1,4 @@
-package co.edu.udea.solicitudservices.solicitud;
+package co.edu.udea.solicitudservices;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ import co.edu.udea.ingweb.solicitud.servicios.SolicitudService;
 import co.edu.udea.ingweb.util.exception.IWDaoException;
 import co.edu.udea.ingweb.util.exception.IWServiceException;
 import co.edu.udea.ingweb.util.exception.MyException;
+import co.edu.udea.solicitudservices.solicitud.SolicitudWsDTO;
 
 /**
  * @author Samuel Arenas	- samuelsaxofon@gmail.com

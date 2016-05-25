@@ -1,4 +1,4 @@
-package co.edu.udea.solicitudservices.evaluacion;
+package co.edu.udea.solicitudservices;
 
 
 import java.util.ArrayList;
@@ -6,7 +6,9 @@ import java.util.List;
 
 import javassist.tools.rmi.RemoteException;
 
+import javax.websocket.server.PathParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -19,6 +21,7 @@ import co.edu.udea.ingweb.solicitud.servicios.EvaluacionService;
 import co.edu.udea.ingweb.util.exception.IWDaoException;
 import co.edu.udea.ingweb.util.exception.IWServiceException;
 import co.edu.udea.ingweb.util.exception.MyException;
+import co.edu.udea.solicitudservices.evaluacion.EvaluacionWsDTO;
 
 /**
  * @author Samuel Arenas	- samuelsaxofon@gmail.com
@@ -28,13 +31,13 @@ import co.edu.udea.ingweb.util.exception.MyException;
  * Lógica del negocio usada en la entidad Evaluacion del proyecto Spring
  */
 @Component
-@Path("Evaluacion")
+@Path("evaluacion")
 public class EvaluacionWs {
 
 	@Autowired
 	EvaluacionService evaluacionService;
 	
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	public List<EvaluacionWsDTO> obtener() throws MyException{
 		/**
@@ -61,9 +64,10 @@ public class EvaluacionWs {
 		return lista;
 	}
 	
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@GET
-	public EvaluacionWsDTO obtenerUnico(int idEvaluacion) throws MyException, IWServiceException{
+	@Path("buscar/{idEvaluacion}")
+	public EvaluacionWsDTO obtenerUnico(@PathParam("idEvaluacion") int idEvaluacion) throws MyException, IWServiceException{
 		EvaluacionWsDTO evaluacionWsDto = new EvaluacionWsDTO();
 		try{
 			Evaluacion evaluacion = evaluacionService.obtener(idEvaluacion);
@@ -76,5 +80,14 @@ public class EvaluacionWs {
 			throw new RemoteException(e);
 		}
 		return evaluacionWsDto;
+	}
+	
+	@POST
+	@Path("guardar/{idEvaluacion}/{tiempo}/{conformidad}/{atencion}")
+	public void guardarEvaluacion(@PathParam("idEvaluacion")int idEvaluacion,
+								@PathParam("tiempo")String tiempo,
+								@PathParam("conformidad")String conformidad,
+								@PathParam("atencion")String atencion) throws IWDaoException, IWServiceException, NumberFormatException, MyException{
+		evaluacionService.guardaEvaluacion(idEvaluacion, tiempo, conformidad, atencion);
 	}
 }

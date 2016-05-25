@@ -1,11 +1,14 @@
-package co.edu.udea.solicitudservices.cliente;
+package co.edu.udea.solicitudservices;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javassist.tools.rmi.RemoteException;
 
+import javax.websocket.server.PathParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -18,6 +21,7 @@ import co.edu.udea.ingweb.solicitud.servicios.ClienteService;
 import co.edu.udea.ingweb.util.exception.IWDaoException;
 import co.edu.udea.ingweb.util.exception.IWServiceException;
 import co.edu.udea.ingweb.util.exception.MyException;
+import co.edu.udea.solicitudservices.cliente.ClienteWsDTO;
 /**
  * @author Samuel Arenas	- samuelsaxofon@gmail.com
  * @author Camila Gómez		- camigomez35@gmail.com
@@ -26,12 +30,12 @@ import co.edu.udea.ingweb.util.exception.MyException;
  * Lógica del negocio usada en la entidad Cliente del proyecto Spring
  */
 @Component
-@Path("Cliente")
+@Path("cliente")
 public class ClienteWs {
 	@Autowired
 	ClienteService clienteService;
 	
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	public List<ClienteWsDTO> obtener() throws MyException{
 		/**
@@ -57,9 +61,10 @@ public class ClienteWs {
 		return lista;
 	}
 	
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@GET
-	public ClienteWsDTO obtenerUnico(int idCliente) throws MyException, IWServiceException{
+	@Path("buscar/{idCliente}")
+	public ClienteWsDTO obtenerUnico(@PathParam ("idCliente") int idCliente) throws MyException, IWServiceException{
 		ClienteWsDTO clienteWsDTO = new ClienteWsDTO();
 		try{
 			Cliente cliente = clienteService.obtener(idCliente);
@@ -73,6 +78,22 @@ public class ClienteWs {
 			throw new RemoteException(e);
 		}
 		return clienteWsDTO;
+	}
+	
+	@POST
+	@Path("guardar/{cedula}/{nombre}/{correoElectronico}")
+	public void guardarCliente(@PathParam("cedula")int cedula,
+								@PathParam("nombre")String nombre,
+								@PathParam("correoElectronico")String correoElectronico) throws IWDaoException, IWServiceException,  MyException{
+		clienteService.guardaCliente(cedula, nombre, correoElectronico);
+	}
+	
+	@PUT
+	@Path("actualizar/{cedula}/{nombre}/{correoElectronico}")
+	public void actualizarCliente(@PathParam("cedula")int cedula,
+								@PathParam("nombre")String nombre,
+								@PathParam("correoElectronico")String correoElectronico) throws IWDaoException, IWServiceException, MyException{
+		clienteService.actualizarCliente(cedula, nombre, correoElectronico);
 	}
 	
 }
