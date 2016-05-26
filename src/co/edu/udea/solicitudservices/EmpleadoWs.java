@@ -41,6 +41,12 @@ public class EmpleadoWs {
 	@Autowired
 	EmpleadoService empleadoService;
 	
+	/**
+	 * Lista de todos los empleados
+	 * 
+	 * @return
+	 * @throws MyException
+	 */
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	public List<EmpleadoWsDTO> obtener() throws MyException{
@@ -71,6 +77,14 @@ public class EmpleadoWs {
 		return lista;
 	}
 	
+	/**
+	 * Obtener un empleado por su id (Cedula)
+	 * 
+	 * @param idEmpleado
+	 * @return
+	 * @throws MyException
+	 * @throws IWServiceException
+	 */
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	@Path("buscar/{idEmpleado}")
@@ -92,6 +106,20 @@ public class EmpleadoWs {
 		return empleadoWsDto;
 	}
 	
+	/**
+	 * Guardar un nuevo empleado
+	 * 
+	 * @param identificacion
+	 * @param nombre
+	 * @param correoElectronico
+	 * @param cargo
+	 * @param contrasena
+	 * @param idjefe
+	 * @throws IWDaoException
+	 * @throws IWServiceException
+	 * @throws NumberFormatException
+	 * @throws MyException
+	 */
 	@POST
 	@Path("guardar/{identificacion}/{nombre}/{correoElectronico}/{cargo}/{contrasena}/{idjefe}")
 	public void guardarEmpleado(@PathParam("cedula")int identificacion,
@@ -99,10 +127,21 @@ public class EmpleadoWs {
 								@PathParam("correoElectronico")String correoElectronico,
 								@PathParam("cargo")String cargo,
 								@PathParam("contrasena")String contrasena,
-								@PathParam("idjefe")int idjefe) throws IWDaoException, IWServiceException, NumberFormatException, MyException{
+								@PathParam("idjefe")int idjefe) 
+								throws IWDaoException, IWServiceException, NumberFormatException, MyException{
 		empleadoService.guardaEmpleado(identificacion, nombre, correoElectronico, cargo, contrasena,idjefe);
 	}
 	
+	/**
+	 * Asignar un jefe al empleado
+	 * 
+	 * @param identificacion
+	 * @param idjefe
+	 * @throws IWDaoException
+	 * @throws IWServiceException
+	 * @throws NumberFormatException
+	 * @throws MyException
+	 */
 	@PUT
 	@Path("asignajefe/{identificacion}/{idjefe}")
 	public void guardarEmpleado(@PathParam("identificacion")int identificacion,

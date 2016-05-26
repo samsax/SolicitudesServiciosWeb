@@ -1,5 +1,7 @@
 package co.edu.udea.solicitudservices.empleado;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import co.edu.udea.ingweb.solicitud.dto.Empleado;
 
 /**
@@ -9,6 +11,7 @@ import co.edu.udea.ingweb.solicitud.dto.Empleado;
  * 
  * Clase usada como objeto de abstracción de la entidad Empleado del proyecto Spring
  */
+@XmlRootElement
 public class EmpleadoWsDTO {
 	int identificacion ;
 	String nombre;

@@ -39,6 +39,12 @@ public class EvaluacionWs {
 	@Autowired
 	EvaluacionService evaluacionService;
 	
+	/**
+	 * Lista de todas las evaluaciones realizadas a las respuestas de cada solicitud
+	 * 
+	 * @return
+	 * @throws MyException
+	 */
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	public List<EvaluacionWsDTO> obtener() throws MyException{
@@ -66,6 +72,14 @@ public class EvaluacionWs {
 		return lista;
 	}
 	
+	/**
+	 * Buca una evaluacion especifica por id
+	 * 
+	 * @param idEvaluacion
+	 * @return
+	 * @throws MyException
+	 * @throws IWServiceException
+	 */
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	@Path("buscar/{idEvaluacion}")
@@ -84,6 +98,18 @@ public class EvaluacionWs {
 		return evaluacionWsDto;
 	}
 	
+	/**
+	 * Guarda una evaluacion 
+	 * 
+	 * @param idEvaluacion
+	 * @param tiempo
+	 * @param conformidad
+	 * @param atencion
+	 * @throws IWDaoException
+	 * @throws IWServiceException
+	 * @throws NumberFormatException
+	 * @throws MyException
+	 */
 	@POST
 	@Path("guardar/{idEvaluacion}/{tiempo}/{conformidad}/{atencion}")
 	public void guardarEvaluacion(@PathParam("idEvaluacion")int idEvaluacion,

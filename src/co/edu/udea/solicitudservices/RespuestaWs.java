@@ -36,6 +36,12 @@ public class RespuestaWs {
 	@Autowired
 	RespuestaService respuestaService;
 	
+	/**
+	 * Lista todas las respuestas dadas a las solicitudes realizadas
+	 * 
+	 * @return
+	 * @throws MyException
+	 */
 	@Produces(MediaType.APPLICATION_XML)
 	@GET
 	public List<RespuestaWsDTO> obtener() throws MyException{
@@ -64,6 +70,14 @@ public class RespuestaWs {
 		return lista;
 	}
 	
+	/**
+	 * Busca una respuesta por id
+	 * 
+	 * @param idRespuesta
+	 * @return
+	 * @throws MyException
+	 * @throws IWServiceException
+	 */
 	@Produces(MediaType.APPLICATION_XML)
 	@GET
 	@Path("buscar/{idrespuesta}")

@@ -35,16 +35,21 @@ public class SolicitudWs {
 	@Autowired
 	SolicitudService solicitudService;
 	
+	/**
+	 * Busca y lista todas las solicitudes realizadas
+	 * 
+	 * Para evitar brechas de seguridad y tr·fico innecesario de la red
+	 * se manejan los objetos Solicitud como SolicitudWsDTO
+	 * 
+	 * Se itera sobre los objetos Solicitud y se obtienen los datos asign√°ndolos a 
+	 * objetos SolicitudWsDTO
+	 * 
+	 * @return
+	 * @throws MyException
+	 */
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	public List<SolicitudWsDTO> obtener() throws MyException{
-		/**
-		 * Para evitar brechas de seguridad y tr·fico innecesario de la red
-		 * se manejan los objetos Solicitud como SolicitudWsDTO
-		 * 
-		 * Se itera sobre los objetos Solicitud y se obtienen los datos asign√°ndolos a 
-		 * objetos SolicitudWsDTO
-		 */
 		List<SolicitudWsDTO> lista = new ArrayList<SolicitudWsDTO>();
 		try{
 			for (Solicitud solicitud : solicitudService.obtener()) {
@@ -67,6 +72,14 @@ public class SolicitudWs {
 		return lista;
 	}
 	
+	/**
+	 * Busca una solicitud por su id
+	 * 
+	 * @param idSolicitud
+	 * @return
+	 * @throws MyException
+	 * @throws IWServiceException
+	 */
 	@Produces(MediaType.APPLICATION_XML)
 	@GET
 	@Path("buscar/{idsolicitud}")
