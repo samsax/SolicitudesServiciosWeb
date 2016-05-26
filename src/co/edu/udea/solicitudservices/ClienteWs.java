@@ -73,19 +73,43 @@ public class ClienteWs {
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	@Path("buscar/{idCliente}")
-	public ClienteWsDTO obtenerUnico(@PathParam ("idCliente") int idCliente) throws MyException, IWServiceException{
-		ClienteWsDTO clienteWsDTO = new ClienteWsDTO();
+	public ClienteWsDTO obtenerUnico(@PathParam("idCliente")int idCliente) throws MyException, IWServiceException{
+		ClienteWsDTO clienteWsDto = new ClienteWsDTO();
 		try{
 			Cliente cliente = clienteService.obtener(idCliente);
-			ClienteWsDTO clienteWsDto = new ClienteWsDTO();
 			clienteWsDto.setIdentificacion(cliente.getIdentificacion());
 			clienteWsDto.setNombre(cliente.getNombre());
 			clienteWsDto.setCorreo(cliente.getCorreo());
 			
-		} catch(IWDaoException e){			
+		} catch(IWDaoException e){
 			throw new RemoteException(e);
 		}
-		return clienteWsDTO;
+		return clienteWsDto;
+	}
+	
+	/**
+	 * Obtener cliente por correo
+	 * 
+	 * @param idCliente
+	 * @return
+	 * @throws MyException
+	 * @throws IWServiceException
+	 */
+	@Produces(MediaType.APPLICATION_JSON)
+	@GET
+	@Path("buscarporcorreo/{correo}")
+	public ClienteWsDTO obtenerUnico(@PathParam("correo")String correo) throws MyException, IWServiceException{
+		ClienteWsDTO clienteWsDto = new ClienteWsDTO();
+		try{
+			Cliente cliente = clienteService.obtener(correo);
+			clienteWsDto.setIdentificacion(cliente.getIdentificacion());
+			clienteWsDto.setNombre(cliente.getNombre());
+			clienteWsDto.setCorreo(cliente.getCorreo());
+			
+		} catch(IWDaoException e){
+			throw new RemoteException(e);
+		}
+		return clienteWsDto;
 	}
 	
 	/**

@@ -17,6 +17,7 @@ public class ClienteWsDTO {
 	int identificacion;
 	String nombre;
 	String correo;
+	
 	public int getIdentificacion() {
 		return identificacion;
 	}

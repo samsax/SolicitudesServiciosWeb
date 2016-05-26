@@ -92,7 +92,6 @@ public class EmpleadoWs {
 		EmpleadoWsDTO empleadoWsDto = new EmpleadoWsDTO();
 		try{
 			Empleado empleado = empleadoService.obtener(idEmpleado);
-
 			empleadoWsDto.setIdentificacion(empleado.getIdentificacion());
 			empleadoWsDto.setNombre(empleado.getNombre());
 			empleadoWsDto.setCorreo(empleado.getCorreo());
