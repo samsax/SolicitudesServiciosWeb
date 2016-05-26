@@ -1,6 +1,6 @@
 package co.edu.udea.solicitudservices.cliente;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  * @author Samuel Arenas	- samuelsaxofon@gmail.com
@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  * Clase usada como objeto de abstracción de la entidad Cliente del proyecto Spring
  */
-@XmlRootElement
+@JsonSerialize
 public class ClienteWsDTO {
 	int identificacion;
 	String nombre;

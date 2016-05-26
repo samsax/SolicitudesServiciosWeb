@@ -5,15 +5,16 @@ import java.util.List;
 
 import javassist.tools.rmi.RemoteException;
 
-import javax.websocket.server.PathParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
 
 import co.edu.udea.ingweb.solicitud.dto.Cliente;
@@ -30,10 +31,11 @@ import co.edu.udea.solicitudservices.cliente.ClienteWsDTO;
  * Lógica del negocio usada en la entidad Cliente del proyecto Spring
  */
 @Component
+
 @Path("cliente")
 public class ClienteWs {
 	@Autowired
-	ClienteService clienteService;
+	private ClienteService clienteService;
 	
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET

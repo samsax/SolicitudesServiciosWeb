@@ -7,6 +7,7 @@ import javassist.tools.rmi.RemoteException;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -28,13 +29,13 @@ import co.edu.udea.solicitudservices.solicitud.SolicitudWsDTO;
  * Lógica del negocio usada en la entidad Solicitud del proyecto Spring
  */
 @Component
-@Path("Solicitud")
+@Path("solicitud")
 public class SolicitudWs {
 
 	@Autowired
 	SolicitudService solicitudService;
 	
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	public List<SolicitudWsDTO> obtener() throws MyException{
 		/**
@@ -68,7 +69,8 @@ public class SolicitudWs {
 	
 	@Produces(MediaType.APPLICATION_XML)
 	@GET
-	public SolicitudWsDTO obtenerUnico(int idSolicitud) throws MyException, IWServiceException{
+	@Path("buscar/{idsolicitud}")
+	public SolicitudWsDTO obtenerUnico(@PathParam("idsolicitud") int idSolicitud) throws MyException, IWServiceException{
 		SolicitudWsDTO solicitudWsDTO = new SolicitudWsDTO();
 		try{
 			Solicitud solicitud = solicitudService.obtener(idSolicitud);
