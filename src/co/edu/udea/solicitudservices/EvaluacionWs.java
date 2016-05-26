@@ -8,6 +8,7 @@ import javassist.tools.rmi.RemoteException;
 
 
 
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -15,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +40,8 @@ public class EvaluacionWs {
 
 	@Autowired
 	EvaluacionService evaluacionService;
+	
+	Logger log = Logger.getLogger(this.getClass());
 	
 	/**
 	 * Lista de todas las evaluaciones realizadas a las respuestas de cada solicitud
@@ -67,6 +71,7 @@ public class EvaluacionWs {
 				lista.add(evaluacionWsDto);	
 			}
 		} catch(IWDaoException e){
+			log.error(e.getMessage());
 			throw new RemoteException(e);
 		}
 		return lista;
@@ -93,6 +98,7 @@ public class EvaluacionWs {
 			evaluacionWsDto.setConformidad(evaluacion.getConformidad());
 			evaluacionWsDto.setAtencion(evaluacion.getAtencion());
 		} catch(IWDaoException e){
+			log.error(e.getMessage());
 			throw new RemoteException(e);
 		}
 		return evaluacionWsDto;

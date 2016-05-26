@@ -11,6 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,6 +35,8 @@ public class SolicitudWs {
 
 	@Autowired
 	SolicitudService solicitudService;
+	
+	Logger log = Logger.getLogger(this.getClass());
 	
 	/**
 	 * Busca y lista todas las solicitudes realizadas
@@ -67,6 +70,7 @@ public class SolicitudWs {
 				lista.add(solicitudWsDto);	
 			}
 		} catch(IWDaoException e){
+			log.error(e.getMessage());
 			throw new RemoteException(e);
 		}
 		return lista;
@@ -80,7 +84,7 @@ public class SolicitudWs {
 	 * @throws MyException
 	 * @throws IWServiceException
 	 */
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	@Path("buscar/{idsolicitud}")
 	public SolicitudWsDTO obtenerUnico(@PathParam("idsolicitud") int idSolicitud) throws MyException, IWServiceException{
@@ -99,6 +103,7 @@ public class SolicitudWs {
 			solicitudWsDTO.setCliente(solicitud.getCliente());
 			
 		} catch(IWDaoException e){
+			log.error(e.getMessage());
 			throw new RemoteException(e);
 		}
 		return solicitudWsDTO;

@@ -8,6 +8,7 @@ import javassist.tools.rmi.RemoteException;
 
 
 
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -16,8 +17,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 
 
 import co.edu.udea.ingweb.solicitud.dto.Empleado;
@@ -40,6 +43,8 @@ public class EmpleadoWs {
 
 	@Autowired
 	EmpleadoService empleadoService;
+	
+	Logger log = Logger.getLogger(this.getClass());
 	
 	/**
 	 * Lista de todos los empleados
@@ -72,6 +77,7 @@ public class EmpleadoWs {
 				lista.add(empleadoWsDto);	
 			}
 		} catch(IWDaoException e){
+			log.error(e.getMessage());
 			throw new RemoteException(e);
 		}
 		return lista;
@@ -100,6 +106,7 @@ public class EmpleadoWs {
 			empleadoWsDto.setJefe(empleado.getJefe());
 			
 		} catch(IWDaoException e){
+			log.error(e.getMessage());
 			throw new RemoteException(e);
 		}
 		return empleadoWsDto;

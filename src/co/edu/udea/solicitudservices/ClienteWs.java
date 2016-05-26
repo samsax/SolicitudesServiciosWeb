@@ -2,7 +2,9 @@ package co.edu.udea.solicitudservices;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javassist.tools.rmi.RemoteException;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -10,8 +12,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import co.edu.udea.ingweb.solicitud.dto.Cliente;
 import co.edu.udea.ingweb.solicitud.servicios.ClienteService;
 import co.edu.udea.ingweb.util.exception.IWDaoException;
@@ -32,7 +37,9 @@ public class ClienteWs {
 	
 	@Autowired
 	private ClienteService clienteService;
-
+	
+	Logger log = Logger.getLogger(this.getClass());
+	
 	/**
 	 * Para evitar brechas de seguridad y tráfico innecesario de la red
 	 * se manejan los objetos Cliente como ClienteWsDTO
@@ -57,6 +64,7 @@ public class ClienteWs {
 				lista.add(clienteSW);
 			}
 		} catch(IWDaoException e){
+			log.error(e.getMessage());
 			throw new RemoteException(e);
 		}
 		return lista;
@@ -82,6 +90,7 @@ public class ClienteWs {
 			clienteWsDto.setCorreo(cliente.getCorreo());
 			
 		} catch(IWDaoException e){
+			log.error(e.getMessage());
 			throw new RemoteException(e);
 		}
 		return clienteWsDto;
@@ -107,6 +116,7 @@ public class ClienteWs {
 			clienteWsDto.setCorreo(cliente.getCorreo());
 			
 		} catch(IWDaoException e){
+			log.error(e.getMessage());
 			throw new RemoteException(e);
 		}
 		return clienteWsDto;

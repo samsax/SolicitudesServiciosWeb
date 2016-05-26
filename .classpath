@@ -1,54 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/com.springsource.org.aopalliance-1.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/commons-logging.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/hibernate3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/javassist-3.12.0.GA.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/mysql-connector-java-5.1.22-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/slf4j-api-1.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/slf4j-log4j12-1.7.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/spring-aop-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/spring-beans-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/spring-context-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/spring-core-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/spring-expression-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/spring-jdbc-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/spring-orm-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/spring-test-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/spring-tx-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/spring-web-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/asm-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/jackson-core-asl-1.5.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/jackson-jaxrs-1.5.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/jackson-mapper-asl-1.5.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/jackson-xc-1.5.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/jersey-client-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/jersey-core-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/jersey-json-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/jersey-server-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/jettison-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/lib/jsr311-api-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/contribs/jersey-apache-client-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/contribs/jersey-atom-abdera-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/contribs/jersey-guice-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/contribs/jersey-multipart-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/contribs/jersey-simple-server-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/contribs/jersey-spring-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/contribs/oauth-client-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/contribs/oauth-server-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CamiGomez318/Desktop/Camila/UdeA/IngWeb/lib/jersey-archive-1.4/contribs/oauth-signature-1.4.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/IngWebProyecto"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/com.springsource.org.aopalliance-1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jackson-core-asl-1.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jackson-jaxrs-1.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jackson-mapper-asl-1.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jackson-xc-1.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/javassist-3.12.0.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jersey-client-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jersey-core-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jersey-json-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jersey-server-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jersey-spring-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jettison-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jsr311-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/mysql-connector-java-5.1.22-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/slf4j-log4j12-1.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/spring-aop-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/spring-beans-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/spring-context-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/spring-core-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/spring-expression-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/spring-jdbc-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/spring-orm-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/spring-test-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/spring-tx-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bonam/Documents/Eclipse/WebExample3/WebContent/WEB-INF/lib/spring-web-4.1.6.RELEASE.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SolicitudesIngWeb"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
