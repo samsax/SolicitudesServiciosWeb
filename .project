@@ -3,7 +3,7 @@
 	<name>solicitudServiciosWeb</name>
 	<comment></comment>
 	<projects>
-		<project>SolicitudesIngWeb</project>
+		<project>IngWebProyecto</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

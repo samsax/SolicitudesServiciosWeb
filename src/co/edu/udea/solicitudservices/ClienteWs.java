@@ -2,21 +2,20 @@ package co.edu.udea.solicitudservices;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javassist.tools.rmi.RemoteException;
-
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import co.edu.udea.ingweb.solicitud.dto.Cliente;
 import co.edu.udea.ingweb.solicitud.servicios.ClienteService;
 import co.edu.udea.ingweb.util.exception.IWDaoException;
@@ -133,10 +132,10 @@ public class ClienteWs {
 	 * @throws MyException
 	 */
 	@POST
-	@Path("guardar/{cedula}/{nombre}/{correoElectronico}")
-	public void guardarCliente(@PathParam("cedula")int cedula,
-								@PathParam("nombre")String nombre,
-								@PathParam("correoElectronico")String correoElectronico) throws IWDaoException, IWServiceException,  MyException{
+	@Path("guardar/")
+	public void guardarCliente(@QueryParam("cedula")int cedula,
+			@QueryParam("nombre")String nombre,
+			@QueryParam("correoElectronico")String correoElectronico) throws IWDaoException, IWServiceException,  MyException{
 		clienteService.guardaCliente(cedula, nombre, correoElectronico);
 	}
 	
@@ -151,11 +150,10 @@ public class ClienteWs {
 	 * @throws MyException
 	 */
 	@PUT
-	@Path("actualizar/{cedula}/{nombre}/{correoElectronico}")
-	public void actualizarCliente(@PathParam("cedula")int cedula,
-								@PathParam("nombre")String nombre,
-								@PathParam("correoElectronico")String correoElectronico) throws IWDaoException, IWServiceException, MyException{
+	@Path("actualizar/")
+	public void actualizarCliente(@FormParam("cedula")int cedula,
+			@FormParam("nombre")String nombre,
+			@FormParam("correoElectronico")String correoElectronico) throws IWDaoException, IWServiceException, MyException{
 		clienteService.actualizarCliente(cedula, nombre, correoElectronico);
 	}
-	
 }

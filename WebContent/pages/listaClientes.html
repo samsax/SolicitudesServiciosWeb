@@ -1,0 +1,16 @@
+<div class="container">
+<br> <br> <br>
+	<h1>Listado de Clientes</h1>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>Cedula</th>
+			<th>Nombre completo</th>
+			<th>Correo electronico</th>
+		</tr>
+		<tr ng-repeat="cliente in clientes">
+			<td>{{cliente.identificacion}}</td>
+			<td>{{cliente.nombre}}</td>
+			<td>{{cliente.correo}}</td>
+		</tr>
+	</table>
+</div>

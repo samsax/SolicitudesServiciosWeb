@@ -1,0 +1,20 @@
+<div class="container">
+	<br> <br> <br> 
+	<h1>Listado de Solicitudes</h1>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>Nombre solicitante</th>
+			<th>Correo electronico</th>
+			<th>Responsable</th>
+			<th>Solicitud</th>
+			<th>Tipo</th>
+		</tr>
+		<tr ng-repeat="solicitud in solicitudes">
+			<td>{{solicitud.cliente.nombre}}</td>
+			<td>{{solicitud.cliente.correo}}</td>
+			<td>{{solicitud.empleado.nombre}}</td>
+			<td>{{solicitud.texto}}</td>
+			<td>{{solicitud.tipo}}</td>
+		</tr>
+	</table>
+</div>

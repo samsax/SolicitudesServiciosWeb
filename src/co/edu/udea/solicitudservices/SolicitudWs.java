@@ -1,21 +1,29 @@
 package co.edu.udea.solicitudservices;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javassist.tools.rmi.RemoteException;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import co.edu.udea.ingweb.solicitud.dto.Cliente;
+import co.edu.udea.ingweb.solicitud.dto.Empleado;
 import co.edu.udea.ingweb.solicitud.dto.Solicitud;
+import co.edu.udea.ingweb.solicitud.servicios.ClienteService;
+import co.edu.udea.ingweb.solicitud.servicios.EmpleadoService;
 import co.edu.udea.ingweb.solicitud.servicios.SolicitudService;
 import co.edu.udea.ingweb.util.exception.IWDaoException;
 import co.edu.udea.ingweb.util.exception.IWServiceException;
@@ -35,6 +43,12 @@ public class SolicitudWs {
 
 	@Autowired
 	SolicitudService solicitudService;
+	
+	@Autowired
+	ClienteService clienteService;
+	
+	@Autowired
+	EmpleadoService empleadoService;
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
@@ -66,7 +80,6 @@ public class SolicitudWs {
 				solicitudWsDto.setFechaRespuesta(solicitud.getFechaRespuesta());
 				solicitudWsDto.setEmpleado(solicitud.getEmpleado());
 				solicitudWsDto.setCliente(solicitud.getCliente());
-				
 				lista.add(solicitudWsDto);	
 			}
 		} catch(IWDaoException e){
@@ -109,4 +122,41 @@ public class SolicitudWs {
 		return solicitudWsDTO;
 	}
 	
+	/**
+	 * Guardar solicitud
+	 *  
+	 * @param correoCliente
+	 * @param correoEmpleado
+	 * @param idCodigo
+	 * @param tipo
+	 * @param texto
+	 * @param estado
+	 * @param dificultad
+	 * @param fechaCrea
+	 * @throws IWDaoException
+	 * @throws IWServiceException
+	 * @throws MyException
+	 */
+	@POST
+	@Path("guardar/")
+	public void guardarSolicitud(@QueryParam("correoCliente")String correoCliente,
+			@QueryParam("correoEmpleado")String correoEmpleado,
+			@QueryParam("idCodigo")int idCodigo,
+			@QueryParam("tipo")String tipo,
+			@QueryParam("texto")String texto,
+			@QueryParam("estado")String estado,
+			@QueryParam("dificultad")int dificultad,
+			@QueryParam("fechaCrea")Date fechaCrea) throws IWDaoException, IWServiceException,  MyException{
+		
+		
+		Cliente cliente = clienteService.obtener(correoCliente);
+		Empleado empleado =  empleadoService.obtener(correoEmpleado);
+		System.out.println(idCodigo);
+		solicitudService.guardaSolicitud(idCodigo, tipo, texto, estado, dificultad, fechaCrea, cliente, empleado);
+	}
+	
+	
 }
+
+
+

@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>Ejemplo Angular</title>
+<script src="../resources/js/angular.min.js"></script>
+<script src="../resources/js/angular-route.js"></script>
+<script src="../resources/js/clientes.js"></script>
+</head>
+<body ng-app="clientes">
+	<div ng-controller ="cliente" class="container">
+		<form ng-submit="guardar()">
+			<label>Cedula</label>
+			<input type="text" ng-model="cliente.identificacion"/>
+			<br>
+			<label>Nombre Completo</label>
+			<input type="text" ng-model="cliente.nombre"/>
+			<br>
+			<label>Correo Electronico</label>
+			<input type="text" ng-model="cliente.correo"/>
+			<br>
+			<input type="submit" value="Guardar"/>
+		</form>
+	</div>
+</body>
+</html>

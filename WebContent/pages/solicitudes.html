@@ -1,0 +1,13 @@
+<div class="container-fluid">
+	<br> <br> <br>
+	<h1>Enviar solicitud</h1>
+	<form ng-submit="guardar()">
+		<label>Correo Solicitante</label> <input type="text"
+			ng-model="solicitud.cliente.correo" /> <br> <label>Fecha</label>
+		<input type="date" max="1979-12-31" ng-model="solicitud.fecha"
+			disabled /> <br> <label>Solicitud</label>
+		<textarea rows="10" ng-model="solicitud.texto"></textarea>
+		<label>Tipo</label> <input type="text" ng-model="solicitud.tipo" /> <br>
+		<input type="submit" value="Guardar" />
+	</form>
+</div>

@@ -1,14 +1,8 @@
 package co.edu.udea.solicitudservices;
 
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javassist.tools.rmi.RemoteException;
-
-
-
-
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -16,13 +10,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-
-
 import co.edu.udea.ingweb.solicitud.dto.Empleado;
 import co.edu.udea.ingweb.solicitud.servicios.EmpleadoService;
 import co.edu.udea.ingweb.util.exception.IWDaoException;
@@ -72,8 +62,6 @@ public class EmpleadoWs {
 				empleadoWsDto.setCargo(empleado.getCargo());
 				empleadoWsDto.setContrasena(empleado.getContrasena());
 				empleadoWsDto.setJefe(empleado.getJefe());
-
-				
 				lista.add(empleadoWsDto);	
 			}
 		} catch(IWDaoException e){
@@ -82,6 +70,8 @@ public class EmpleadoWs {
 		}
 		return lista;
 	}
+	
+	
 	
 	/**
 	 * Obtener un empleado por su id (Cedula)
@@ -110,6 +100,35 @@ public class EmpleadoWs {
 			throw new RemoteException(e);
 		}
 		return empleadoWsDto;
+	}
+	
+	
+	/**
+	 * Obtener empleado por correo electronico
+	 * 
+	 * @param correoEmpleado
+	 * @return
+	 * @throws MyException
+	 * @throws IWServiceException
+	 */
+	@Produces(MediaType.APPLICATION_JSON)
+	@GET
+	@Path("buscarporcorreo/{correoEmpleado}")
+	public EmpleadoWsDTO obtenerEmpleado(@PathParam("correoEmpleado")int correoEmpleado) throws MyException, IWServiceException{
+		EmpleadoWsDTO empleadoWsDTO = new EmpleadoWsDTO();
+		try{
+			Empleado empleado = empleadoService.obtener(correoEmpleado);	
+			empleadoWsDTO.setIdentificacion(empleado.getIdentificacion());
+			empleadoWsDTO.setNombre(empleado.getNombre());
+			empleadoWsDTO.setCorreo(empleado.getCorreo());
+			empleadoWsDTO.setContrasena(empleado.getContrasena());
+			empleadoWsDTO.setCargo(empleado.getCargo());
+			empleadoWsDTO.setJefe(empleado.getJefe());
+		} catch(IWDaoException e){
+			log.error(e.getMessage());
+			throw new RemoteException(e);
+		}
+		return empleadoWsDTO;
 	}
 	
 	/**
