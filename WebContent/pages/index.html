@@ -1,23 +1,28 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>Venta de Chocolates</title>
-<script src="../resources/js/angular.min.js"></script>
-<script src="../resources/js/angular-route.js"></script>
-<script src="../resources/js/solicitudes.js"></script>
-<script src="../resources/js/clientes.js"></script>
-<link rel="stylesheet"
-	href="../resources/bootstrap/css/bootstrap.min.css">
-<script src="../resources/bootstrap/js/bootstrap.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Venta de Chocolates</title>
+	<script type="text/javascript" src="../resources/js/angular.min.js"></script>
+	<script type="text/javascript" src="../resources/js/angular-route.js"></script>
+		<script type="text/javascript" src="../resources/js/angular-cookies.js"></script>
+	<script type="text/javascript" src="../resources/js/solicitudes.js"></script>
+	<script type="text/javascript" src="../resources/js/clientes.js"></script>
+	<script type="text/javascript" src="../resources/js/iniciarSesion.js"></script>
+	<script type="text/javascript" src="../resources/js/responder.js"></script>
+	<link rel="stylesheet"
+		href="../resources/bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="../resources/bootstrap/js/bootstrap.js"></script>
 
 </head>
 <body ng-app="solicitudes">
 	<div class="navbar navbar-fixed-top navbar-inverse">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a class="brand" href="#/solicitudes">Ingenieria Web</a>
+				<a class="brand" href="#/inicioSesion">Ingenieria Web</a>
 				<ul class="nav pull-right">
-					<li><a href="http://localhost:8080/solicitudServiciosWeb/pages/index.html?#/" >Clientes</a></li>
 					<li><a href="#/enviarSolicitud">Hacer solicitud</a></li>
+					<li><a href="http://localhost:8080/solicitudServiciosWeb/pages/index.html?#/" >Clientes</a></li>
 					<li><a href="#/solicitudes">Solicitudes</a></li>
 					<li><a href="#/inicioSesion">Iniciar Sesion</a></li>
 				</ul>

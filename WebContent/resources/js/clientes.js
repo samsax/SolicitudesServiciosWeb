@@ -3,18 +3,8 @@ var app = angular.module('solicitudes');
 var servicioListaCliente = "http://localhost:8080/solicitudServiciosWeb/rest/cliente";
 var servicioGuardarCliente = "http://localhost:8080/solicitudServiciosWeb/rest/cliente/guardar/";
 
-app.config([ '$routeProvider', function($routeProvider) {
-	$routeProvider.when('/', {
-		templateUrl : 'listaClientes.html',
-		controller : 'listaClientes'
-	});
-	$routeProvider.when('/cliente', {
-		templateUrl : 'clienteCrear.html',
-		controller : 'cliente'
-	});
-} ]);
 
-app.controller('listaClientes', function($scope, clientes) {
+app.controller('listaClientes', function($scope, clientes, $cookies) {
 	clientes.listaClientes().success(function(data) {
 		$scope.clientes = data.clienteWsDTO;
 	});

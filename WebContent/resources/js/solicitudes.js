@@ -1,9 +1,16 @@
-var app = angular.module('solicitudes', [ 'ngRoute' ]);
+var app = angular.module('solicitudes', [ 'ngRoute', 'ngCookies' ]);
 
-var servicioLista = "http://localhost:8080/solicitudServiciosWeb/rest/solicitud";
-var servicioGuardar = "http://localhost:8080/solicitudServiciosWeb/rest/solicitud/guardar/";
+var servicioLista = "http://localhost:8080/solicitudServiciosWeb/rest/solicitud/obtenerPorEmpleado/";
+var servicioGuardarSolicitud = "http://localhost:8080/solicitudServiciosWeb/rest/solicitud/guardar/";
 
-app.config([ '$routeProvider', function($routeProvider) {
+var toType = function(obj) {
+	return ({}).toString.call(obj).match(/\s([a-z|A-Z]+)/)[1].toLowerCase()
+}
+
+var solicitudAResponder = '';
+
+app.config([ '$routeProvider', function($routeProvider, $cookies) {
+	
 	$routeProvider.when('/solicitudes', {
 		templateUrl : 'listaSolicitud.html',
 		controller : 'listaSolicitudes'
@@ -12,12 +19,40 @@ app.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'solicitudes.html',
 		controller : 'solicitudCrear'
 	});
+	$routeProvider.when('/responder', {
+		templateUrl : 'responderSolicitud.html',
+		controller : 'responder'
+	});
+	$routeProvider.when('/inicioSesion', {
+		templateUrl : 'login.html',
+		controller : 'iniciarSesion'
+	});
+	$routeProvider.when('/', {
+		templateUrl : 'listaClientes.html',
+		controller : 'listaClientes'
+	});
+	$routeProvider.when('/cliente', {
+		templateUrl : 'clienteCrear.html',
+		controller : 'cliente'
+	});
 } ]);
 
-app.controller('listaSolicitudes', function($scope, solicitudesService) {
+app.controller('listaSolicitudes', function($scope, $location,solicitudesService, 
+		$cookies, auth) {
 	solicitudesService.listaSolicitud().success(function(data) {
-		$scope.solicitudes = data.solicitudWsDTO;
+		if(toType(data.solicitudWsDTO) == 'array'){
+			$scope.solicitudes = data.solicitudWsDTO;
+		}else if(toType(data.solicitudWsDTO) == 'object'){
+			$scope.solicitudes = [data.solicitudWsDTO];
+		}
+
 	});
+
+	$scope.responder = function(solicitud) {
+		console.log(solicitud.idcodigo);
+		solicitudAResponder = solicitud.idcodigo;
+		$location.url('/responder');
+	}
 });
 
 app.controller('solicitudCrear',
@@ -50,7 +85,7 @@ app.controller('solicitudCrear',
 				}
 			}
 
-			$scope.guardar = function() {
+			$scope.guardarSolicitud = function() {
 				var today = $scope.solicitud.fecha;
 				var dd = today.getDate();
 				var mm = today.getMonth() + 1;
@@ -63,28 +98,28 @@ app.controller('solicitudCrear',
 				}
 				var today = dd + '/' + mm + '/' + yyyy;
 				$scope.solicitud.fecha = today;
-				solicitudesService.guardar($scope.solicitud).success(
+				solicitudesService.guardarSolictudNueva($scope.solicitud).success(
 						function(data) {
 							$location.url('/');
 						});
 			}
 		});
 
-app.service('solicitudesService', function($http) {
+app.service('solicitudesService', function($http, $cookies) {
 	this.listaSolicitud = function() {
 		return $http({
 			method : 'GET',
-			url : servicioLista
+			url : servicioLista + $cookies.nombreUsuario
 		});
 	}
 
-	this.guardar = function(solicitud) {
+	this.guardarSolictudNueva = function(solicitud) {
 		return $http({
-			url : servicioGuardar,
+			url : servicioGuardarSolicitud,
 			method : 'POST',
 			params : {
 				correoCliente : solicitud.cliente.correo,
-				correoEmpleado : 'samuel.arenas@gmail.com',
+				correoEmpleado : 'e.gomez@gmail.com',
 				idCodigo : null,
 				tipo : solicitud.tipo,
 				texto : solicitud.texto,

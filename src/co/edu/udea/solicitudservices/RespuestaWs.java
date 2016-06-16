@@ -10,6 +10,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
@@ -112,15 +113,25 @@ public class RespuestaWs {
 		return respuestaWsDto;
 	}
 
+	/**
+	 * Responder una solicitud
+	 * 
+	 * @param idRespuesta
+	 * @param texto
+	 * @param idSolicitud
+	 * @param idEvaluacion
+	 * @throws IWDaoException
+	 * @throws IWServiceException
+	 * @throws NumberFormatException
+	 * @throws MyException
+	 */
 	@POST
-	@Path("guardar/{idRespuesta}/{texto}/{idsolicitud}/{idevaluacion}")
-	public void guardarRespuesta(@PathParam("idRespuesta") int idRespuesta,
-			@PathParam("texto") String texto,
-			@PathParam("solicitud") int idSolicitud,
-			@PathParam("evaluacion") int idEvaluacion) throws IWDaoException,
+	@Path("guardar/")
+	public void guardarRespuesta(@QueryParam("idRespuesta") int idRespuesta,
+			@QueryParam("texto") String texto,
+			@QueryParam("solicitud") int idSolicitud) throws IWDaoException,
 			IWServiceException, NumberFormatException, MyException{
 		Solicitud solicitud = solicitudService.obtener(idSolicitud);
-		Evaluacion evaluacion = evaluacionService.obtener(idEvaluacion);
-		respuestaService.guardaRespuesta(idRespuesta, texto, solicitud, evaluacion);
+		respuestaService.guardaRespuesta(idRespuesta, texto, solicitud);
 	}
 }

@@ -26,7 +26,15 @@ public class SolicitudWsDTO {
 	Date fechaRespuesta;
 	Cliente cliente;
 	Empleado empleado;
+	String respuesta;
 	
+	public void setRespuesta(String respuesta) {
+		this.respuesta = respuesta;
+	}
+	public String getRespuesta() {
+		return respuesta;
+	}
+
 	public int getIdcodigo() {
 		return idcodigo;
 	}

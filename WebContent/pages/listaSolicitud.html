@@ -8,6 +8,7 @@
 			<th>Responsable</th>
 			<th>Solicitud</th>
 			<th>Tipo</th>
+			<th>Responder</th>
 		</tr>
 		<tr ng-repeat="solicitud in solicitudes">
 			<td>{{solicitud.cliente.nombre}}</td>
@@ -15,6 +16,8 @@
 			<td>{{solicitud.empleado.nombre}}</td>
 			<td>{{solicitud.texto}}</td>
 			<td>{{solicitud.tipo}}</td>
+			<td ng-if="solicitud.respuesta == null"><a class="btn btn-primary" ng-click="responder(solicitud)" >Responder</a></td>
+			<td ng-if="solicitud.respuesta != null">{{solicitud.respuesta}}</td>	
 		</tr>
 	</table>
 </div>

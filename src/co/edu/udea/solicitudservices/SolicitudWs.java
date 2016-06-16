@@ -9,6 +9,7 @@ import javassist.tools.rmi.RemoteException;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -21,9 +22,11 @@ import org.springframework.stereotype.Component;
 
 import co.edu.udea.ingweb.solicitud.dto.Cliente;
 import co.edu.udea.ingweb.solicitud.dto.Empleado;
+import co.edu.udea.ingweb.solicitud.dto.Respuesta;
 import co.edu.udea.ingweb.solicitud.dto.Solicitud;
 import co.edu.udea.ingweb.solicitud.servicios.ClienteService;
 import co.edu.udea.ingweb.solicitud.servicios.EmpleadoService;
+import co.edu.udea.ingweb.solicitud.servicios.RespuestaService;
 import co.edu.udea.ingweb.solicitud.servicios.SolicitudService;
 import co.edu.udea.ingweb.util.exception.IWDaoException;
 import co.edu.udea.ingweb.util.exception.IWServiceException;
@@ -49,6 +52,9 @@ public class SolicitudWs {
 	
 	@Autowired
 	EmpleadoService empleadoService;
+	
+	@Autowired
+	RespuestaService respuestaService;
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
@@ -80,7 +86,7 @@ public class SolicitudWs {
 				solicitudWsDto.setFechaRespuesta(solicitud.getFechaRespuesta());
 				solicitudWsDto.setEmpleado(solicitud.getEmpleado());
 				solicitudWsDto.setCliente(solicitud.getCliente());
-				lista.add(solicitudWsDto);	
+				solicitudWsDto.setRespuesta(solicitud.getRespuesta());
 			}
 		} catch(IWDaoException e){
 			log.error(e.getMessage());
@@ -152,9 +158,74 @@ public class SolicitudWs {
 		Cliente cliente = clienteService.obtener(correoCliente);
 		Empleado empleado =  empleadoService.obtener(correoEmpleado);
 		System.out.println(idCodigo);
-		solicitudService.guardaSolicitud(idCodigo, tipo, texto, estado, dificultad, fechaCrea, cliente, empleado);
+		solicitudService.guardaSolicitud(idCodigo, tipo, texto, estado, dificultad, fechaCrea, cliente, empleado, null);
 	}
 	
+	/**
+	 * Actualizar Respuesta
+	 *  
+	 * @param correoCliente
+	 * @param correoEmpleado
+	 * @param idCodigo
+	 * @param tipo
+	 * @param texto
+	 * @param estado
+	 * @param dificultad
+	 * @param fechaCrea
+	 * @throws IWDaoException
+	 * @throws IWServiceException
+	 * @throws MyException
+	 */
+	@PUT
+	@Path("responder/")
+	public void guardarSolicitud(@QueryParam("idSolicitud")int idSolicitud,
+			@QueryParam("texto") String texto) throws IWDaoException, IWServiceException,  MyException{
+		
+		
+		Solicitud solicitud = solicitudService.obtener(idSolicitud);
+		solicitudService.responder(solicitud, texto);
+	}
+	
+	/**
+	 * Busca y lista las solicitudes realizadas asignadas a un determinado empleado
+	 * 
+	 * Para evitar brechas de seguridad y tr·fico innecesario de la red
+	 * se manejan los objetos Solicitud como SolicitudWsDTO
+	 * 
+	 * Se itera sobre los objetos Solicitud y se obtienen los datos asign√°ndolos a 
+	 * objetos SolicitudWsDTO
+	 * 
+	 * @return
+	 * @throws MyException
+	 */
+	@Produces(MediaType.APPLICATION_JSON)
+	@GET
+	@Path("/obtenerPorEmpleado/{correoEmpleado}")
+	
+	public List<SolicitudWsDTO> obtenerPorEmpleado(@PathParam("correoEmpleado") String correoEmpleado) throws MyException{
+		
+		List<SolicitudWsDTO> lista = new ArrayList<SolicitudWsDTO>();
+		try{
+			for (Solicitud solicitud : solicitudService.obtenerPorEmpleado(correoEmpleado)) {
+				SolicitudWsDTO solicitudWsDto = new SolicitudWsDTO();
+				solicitudWsDto.setIdcodigo(solicitud.getIdcodigo());
+				solicitudWsDto.setTipo(solicitud.getTipo());
+				solicitudWsDto.setTexto(solicitud.getTexto());
+				solicitudWsDto.setEstado(solicitud.getEstado());
+				solicitudWsDto.setDificultad(solicitud.getDificultad());
+				solicitudWsDto.setFechaCreacion(solicitud.getFechaCreacion());
+				solicitudWsDto.setFechaRespuesta(solicitud.getFechaRespuesta());
+				solicitudWsDto.setEmpleado(solicitud.getEmpleado());
+				solicitudWsDto.setCliente(solicitud.getCliente());
+				solicitudWsDto.setRespuesta(solicitud.getRespuesta());
+				lista.add(solicitudWsDto);
+			}
+		} catch(IWDaoException e){
+			log.error(e.getMessage());
+			throw new RemoteException(e);
+		}
+		return lista;
+	}
 	
 }
 
