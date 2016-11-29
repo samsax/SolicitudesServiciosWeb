@@ -1,7 +1,16 @@
+/**
+ *  * @author Camila Gomez
+ * @author Samuel Arenas
+ * @author Santiago Romero
+ * Clase que gestiona la creación de respuestas conforme a una solicitud
+ */
 var app = angular.module('solicitudes');
 
 var servicioGuardar = "http://localhost:8080/solicitudServiciosWeb/rest/solicitud/responder/";
-
+/**
+ * Describe el controlador para la creación de respuestas
+ * Consumiendo los servicios correspondientes
+ */
 app.controller('responder', function($scope, $location, respuestaService, $cookies) {
 	$scope.respuesta = {
 			texto: '',
@@ -13,7 +22,9 @@ app.controller('responder', function($scope, $location, respuestaService, $cooki
 		});
 	}
 });
-
+/**
+ * Describe un elemento Respuesta para agregarlo a la base de datos consumiendo el servicio
+ */
 app.service('respuestaService', function($http, $cookies) {
 	this.responder = function(idSolicitud, texto) {
 		return $http({

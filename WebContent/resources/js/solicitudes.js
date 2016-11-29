@@ -1,14 +1,25 @@
+/**
+ *  * @author Camila Gomez
+ * @author Samuel Arenas
+ * @author Santiago Romero
+ * Clase usada para la gestión de la creación de solicitudes y mostrar las solicitudes existentes
+ */
 var app = angular.module('solicitudes', [ 'ngRoute', 'ngCookies' ]);
 
 var servicioLista = "http://localhost:8080/solicitudServiciosWeb/rest/solicitud/obtenerPorEmpleado/";
 var servicioGuardarSolicitud = "http://localhost:8080/solicitudServiciosWeb/rest/solicitud/guardar/";
-
+/**
+ * Método para verificación de los datos de entrada del servicio como Json object o un Json array
+ */
 var toType = function(obj) {
 	return ({}).toString.call(obj).match(/\s([a-z|A-Z]+)/)[1].toLowerCase()
 }
 
 var solicitudAResponder = '';
-
+/**
+ * Determina la navegación entre páginas
+ * Conforme a la opción seleccionada en la barra de navegación
+ */
 app.config([ '$routeProvider', function($routeProvider, $cookies) {
 	
 	$routeProvider.when('/solicitudes', {
@@ -36,7 +47,10 @@ app.config([ '$routeProvider', function($routeProvider, $cookies) {
 		controller : 'cliente'
 	});
 } ]);
-
+/**
+ * Controlador que se encarga del listado de solicitudes existentes en la base de datos
+ * Muestra solo las solicitudes del empleado logueado
+ */
 app.controller('listaSolicitudes', function($scope, $location,solicitudesService, 
 		$cookies, auth) {
 	solicitudesService.listaSolicitud().success(function(data) {
@@ -54,7 +68,9 @@ app.controller('listaSolicitudes', function($scope, $location,solicitudesService
 		$location.url('/responder');
 	}
 });
-
+/**
+ * Controlador que gestiona las operaciones para la creación de solicitudes
+ */
 app.controller('solicitudCrear',
 		function($scope, $location, solicitudesService) {
 			$scope.solicitud = {
@@ -84,7 +100,10 @@ app.controller('solicitudCrear',
 					}
 				}
 			}
-
+/**
+ * Función que implementa el guardado de una solicitud
+ * Consume los servicios correspondientes
+ */
 			$scope.guardarSolicitud = function() {
 				var today = $scope.solicitud.fecha;
 				var dd = today.getDate();
@@ -104,7 +123,10 @@ app.controller('solicitudCrear',
 						});
 			}
 		});
-
+/**
+ * Crea la conexión con los servicios existentes en el proyecto 
+ * Describe elementos para la creación de solicitudes y para 
+ */
 app.service('solicitudesService', function($http, $cookies) {
 	this.listaSolicitud = function() {
 		return $http({
@@ -112,14 +134,16 @@ app.service('solicitudesService', function($http, $cookies) {
 			url : servicioLista + $cookies.nombreUsuario
 		});
 	}
-
+/**
+ * Describe el elemento correspondiente a la creación de una nueva solicitud
+ */
 	this.guardarSolictudNueva = function(solicitud) {
 		return $http({
 			url : servicioGuardarSolicitud,
 			method : 'POST',
 			params : {
 				correoCliente : solicitud.cliente.correo,
-				correoEmpleado : 'e.gomez@gmail.com',
+				correoEmpleado : 'samuel.arenas@gmail.com',
 				idCodigo : null,
 				tipo : solicitud.tipo,
 				texto : solicitud.texto,

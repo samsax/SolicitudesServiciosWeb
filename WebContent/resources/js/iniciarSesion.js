@@ -1,7 +1,15 @@
+/**
+ *  * @author Camila Gomez
+ * @author Samuel Arenas
+ * @author Santiago Romero
+ * Clase usada para la gestión del inicio de sesión
+ */
 var app = angular.module('solicitudes');
 
 var servicioInicioSesion = "http://localhost:8080/solicitudServiciosWeb/rest/empleado/inicioSesion";
-
+/**
+ * Usado para retornar la sesión actual usando el manejo de cookies
+ */
 app.factory('auth', function($cookies, $location) {
 	return {
 
@@ -23,7 +31,9 @@ app.factory('auth', function($cookies, $location) {
 		}
 	};
 });
-
+/**
+ * Función usada para validar los campos de la vista de inicio de sesión
+ */
 app.controller('iniciarSesion', function($scope, $location, auth, usuario,
 		$cookies) {
 	$scope.nombreUsuario = '';
@@ -43,7 +53,9 @@ app.controller('iniciarSesion', function($scope, $location, auth, usuario,
 				});
 	}
 });
-
+/**
+ * Deteermina un elemento Usuario para validar el mismo con los datos consumidos de los servicios
+ */
 app.service('usuario', function($http) {
 	this.validar = function(usuario, pass) {
 		return $http({
@@ -57,12 +69,16 @@ app.service('usuario', function($http) {
 	}
 });
 
-// se ejecuta cuando se inicia el modulo angular
+/**
+ * se ejecuta cuando se inicia el modulo angular
+ * Se ejecuta cada vez que cambia la ruta
+ * llamamos a checkStatus, el cual lo hemos definido en la factoria auth 
+ * la cu�l hemos inyectado en la acci�n run de la aplicaci�n
+ */ 
 app.run(function($rootScope, auth) {
-	// Se ejecuta cada vez que cambia la ruta
+	
 	$rootScope.$on('$routeChangeStart', function() {
-		// llamamos a checkStatus, el cual lo hemos definido en la factoria auth
-		// la cu�l hemos inyectado en la acci�n run de la aplicaci�n
+		
 		auth.validarEstado();
 	});
 });
